@@ -1,0 +1,8 @@
+README.md
+setup.py
+Bisection-Method-Python/__init__.py
+Bisection-Method-Python/bisection.py
+bisection_method_flyn_nick.egg-info/PKG-INFO
+bisection_method_flyn_nick.egg-info/SOURCES.txt
+bisection_method_flyn_nick.egg-info/dependency_links.txt
+bisection_method_flyn_nick.egg-info/top_level.txt
