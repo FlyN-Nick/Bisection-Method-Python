@@ -11,7 +11,7 @@ def convert(f, x: float) -> float:
     return eval(f)
   return f(x)
 
-def bisection(f, min: float, max: float, maxIter=100, annoyingPrints=False):
+def bisection(f, min: float, max: float, maxIter=100, annoyingPrints=False, epsilon=0):
   """Bisection function: finds the root of a function within given range.
 
   Things that may cause this to be unsuccessfull/error:
@@ -32,24 +32,27 @@ def bisection(f, min: float, max: float, maxIter=100, annoyingPrints=False):
     The maximum number of iterations (default 1000)
   annoyingPrints : bool, optional
     Enables an annoying print statement every iteration (default False)
+  epsilon : float, optional
+    The tolerance for finding root (default 0)
   """
   
   print('---------------------------------------------------------------');
 
   if min > max:
-    print('You seem to have mixed the min and max...')
-    return 'ERROR'
-  elif min is max and convert(f, min) == 0:
-    print('Wow, the given min and max were the same and were the root. Kinda seems like this was on purpose...')
+    temp = max
+    max = min
+    min = temp
+  if min is max and convert(f, min) == 0:
+    print('Min=max=root.')
     return min
   elif min is max:
-    print('Wow, the given min and max were the same but were not the root. Kinda seems like this was on purpose...')
+    print('Min=max≠root.')
     return 'ERROR'
   elif convert(f, min) == 0:
-    print('Wow, the lower bound of the given range was the root. Kinda seems like this was on purpose...')
+    print('Min=root.')
     return min
   elif convert(f, max) == 0:
-    print('Wow, the upper bound of the given range was the root. Kinda seems like this was on purpose...')
+    print('Max=root')
     return max
 
   posSlope = True
@@ -73,7 +76,7 @@ def bisection(f, min: float, max: float, maxIter=100, annoyingPrints=False):
         print(f'Root not found.\nRange: ({min}, {max}).')
         return [min, max]
       max = guess
-    else: 
+    elif abs(convert(f, guess)) <= epsilon:
       print(f'Root: {guess}.\nIterations it took: {iter}.')
       return guess
     if annoyingPrints:

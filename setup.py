@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="bisection-method-flyn-nick", 
-    version="1.0.0",
+    version="1.0.1",
     author="Nicholas Assaderaghi",
     author_email="nickassader@gmail.com",
     description="An implementation of the bisection method in python.",
